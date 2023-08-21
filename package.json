@@ -1,0 +1,27 @@
+{
+  "name": "naidoc",
+  "version": "0.0.1",
+  "type": "module",
+  "author": "Sergei Ivankov <sergeiivankov@pm.me>",
+  "license": "AGPL-3.0-only",
+  "scripts": {
+    "build": "rollup -c src/rollup.config.js",
+    "dev": "rollup -w -c src/rollup.config.js"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "15.1.0",
+    "@rollup/plugin-terser": "0.4.3",
+    "@types/uuid": "9.0.2",
+    "bulma": "0.9.4",
+    "dexie": "3.2.4",
+    "docx": "8.2.2",
+    "docx-preview": "0.1.18",
+    "rollup": "3.28.0",
+    "rollup-plugin-copy": "3.4.0",
+    "rollup-plugin-import-css": "3.3.1",
+    "rollup-plugin-serve": "2.0.2",
+    "rollup-plugin-svelte": "7.1.6",
+    "svelte": "4.2.0",
+    "uuid": "9.0.0"
+  }
+}

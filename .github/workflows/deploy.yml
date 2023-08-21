@@ -1,0 +1,32 @@
+name: Deploy app to Pages
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Push
+        uses: s0/git-publish-subdir-action@v2.6.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: self
+          BRANCH: gh-pages
+          FOLDER: dist
+          SQUASH_HISTORY: true
