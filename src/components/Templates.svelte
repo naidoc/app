@@ -36,6 +36,37 @@
     isModificationOpen = true;
   };
 
+  const duplicate = async template => {
+    const id = uuid();
+    const unixtime = Math.floor(Date.now() / 1000);
+
+    try {
+      await db.templates.add({
+        id,
+        name: `Дубликат "${template.name}"`,
+        creationDate: unixtime,
+        modificationDate: unixtime,
+        fields: template.fields,
+        filename: template.filename,
+        content: template.content
+      });
+    } catch(err) {
+      return displayError('Ошибка сохранения шаблона', err);
+    }
+
+    showAlert('Дубликат шаблона успешно создан');
+
+    let templateDuplicate;
+
+    try {
+      templateDuplicate = await db.templates.get(id);
+    } catch(err) {
+      return displayError('Ошибка чтения таблицы шаблонов', err);
+    }
+
+    openEdit(templateDuplicate);
+  };
+
   const closeModification = () => {
     isModificationOpen = false;
   };
@@ -171,17 +202,25 @@
           <div class="column has-text-weight-semibold is-text-overflowed">{ template.name }</div>
           <div class="column is-text-overflowed">{ template.filename }</div>
           <div class="column is-narrow">
-            <div class="field is-grouped">
-              <div class="control">
-                <button class="button is-ghost" on:click={ () => openEdit(template) }>
-                  Редактировать
-                </button>
+            <div class="dropdown is-right is-hoverable">
+              <div class="dropdown-trigger">
+                <button class="button">Действия</button>
               </div>
-              <div class="control">
-                <button class="button is-ghost has-text-danger"
-                        on:click={ () => deleteTemplate(template.id) }>
-                  Удалить
-                </button>
+              <div class="dropdown-menu">
+                <div class="dropdown-content">
+                  <a class="dropdown-item"
+                     on:click|preventDefault={ () => openEdit(template) }>
+                    Редактировать
+                  </a>
+                  <a class="dropdown-item"
+                     on:click|preventDefault={ () => duplicate(template) }>
+                    Дублировать
+                  </a>
+                  <a class="dropdown-item has-text-danger"
+                     on:click|preventDefault={ () => deleteTemplate(template.id) }>
+                    Удалить
+                  </a>
+                </div>
               </div>
             </div>
           </div>
