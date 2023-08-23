@@ -9,6 +9,7 @@
     "dev": "rollup -w -c src/rollup.config.js"
   },
   "devDependencies": {
+    "@rollup/plugin-json": "6.0.0",
     "@rollup/plugin-node-resolve": "15.1.0",
     "@rollup/plugin-terser": "0.4.3",
     "@types/uuid": "9.0.2",

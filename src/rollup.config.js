@@ -1,5 +1,6 @@
 import copy from 'rollup-plugin-copy';
 import css from 'rollup-plugin-import-css';
+import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
 import serve from 'rollup-plugin-serve';
 import svelte from 'rollup-plugin-svelte';
@@ -20,6 +21,7 @@ const plugins = [
   }),
   resolve({ browser: true }),
   css({ output: 'app.css' }),
+  json(),
   copy({
     targets: [{ src: 'src/assets/*', dest: 'dist' }]
   })

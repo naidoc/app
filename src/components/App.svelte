@@ -1,4 +1,6 @@
 <script>
+  import { version } from '../../package.json';
+
   import { fade, fly } from 'svelte/transition';
   import { alertData } from '../common/ui.js';
 
@@ -32,6 +34,17 @@
            on:click|preventDefault={ () => setSection(SECTION_TEMPLATES) }>
           Шаблоны
         </a>
+      </div>
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">Меню</a>
+          <div class="navbar-dropdown is-right">
+            <a href="https://github.com/naidoc/naidoc/blob/main/docs/ru/changelog.md" class="navbar-item" target="_blank">
+              История изменений
+            </a>
+            <div class="navbar-item">Версия { version }</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
