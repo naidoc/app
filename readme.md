@@ -1,13 +1,7 @@
 <h1 align="center">NaiDoc</h1>
 
-<p align="center">
-  <a href="/docs/en">English</a>
-  |
-  <a href="/docs/ru">Pусский</a>
-</p>
+<p align="center">Make it easier to generate similar documents.</p>
 
-<p align="center">
-  :point_right:
-  <a href="https://naidoc.github.io/naidoc/"><b>naidoc.github.io/naidoc/</b></a>
-  :point_left:
-</p>
+Application is available at [app.naidoc.org](https://app.naidoc.org).
+
+> **Warning:** application is in alpha development, which means that with the release of a new alpha version (0.0.x), you may lose all saved data; the stability of the data storage format will be ensured from the release of version 0.1.0
