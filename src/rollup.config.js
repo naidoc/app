@@ -29,7 +29,7 @@ const plugins = [
     options: {
       includePaths: ['node_modules']
     },
-    processor: css => postcss([cssnano])
+    processor: css => postcss([cssnano({ preset: 'advanced' })])
       .process(css, { from: undefined })
       .then(result => result.css)
   }),
