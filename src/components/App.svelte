@@ -39,7 +39,7 @@
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">Меню</a>
           <div class="navbar-dropdown is-right">
-            <a href="https://github.com/naidoc/naidoc/blob/main/docs/ru/changelog.md" class="navbar-item" target="_blank">
+            <a href="https://github.com/naidoc/app/blob/main/changelog.md" class="navbar-item" target="_blank">
               История изменений
             </a>
             <div class="navbar-item">Версия { version }</div>

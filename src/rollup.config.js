@@ -2,8 +2,10 @@ import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
 import resolve from '@rollup/plugin-node-resolve';
 import terser from '@rollup/plugin-terser';
+import cssnano from 'cssnano';
+import postcss from 'postcss';
 import copy from 'rollup-plugin-copy';
-import css from 'rollup-plugin-import-css';
+import sass from 'rollup-plugin-sass';
 import serve from 'rollup-plugin-serve';
 import svelte from 'rollup-plugin-svelte';
 
@@ -22,7 +24,15 @@ const plugins = [
   }),
   commonjs(),
   resolve({ browser: true }),
-  css({ output: 'app.css' }),
+  sass({
+    output: 'dist/app.min.css',
+    options: {
+      includePaths: ['node_modules']
+    },
+    processor: css => postcss([cssnano])
+      .process(css, { from: undefined })
+      .then(result => result.css)
+  }),
   json(),
   copy({
     targets: [
