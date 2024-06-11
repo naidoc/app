@@ -2,8 +2,8 @@
   import { liveQuery } from 'dexie';
   import { v4 as uuid } from 'uuid';
   import db from '../common/db.js';
-  import { showAlert } from '../common/ui.js';
-  import { readFile, displayError } from '../common/utils.js';
+  import { showAlert } from '../common/ui';
+  import { readFile, displayError } from '../common/utils';
 
   let isModificationOpen = false;
   let data = {};

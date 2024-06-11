@@ -1,18 +1,18 @@
-<script>
-  import { version } from '../../package.json';
-
+<script lang="ts">
   import { fade, fly } from 'svelte/transition';
-  import { alertData } from '../common/ui.js';
+  import { alertData } from '../common/ui';
 
   import Documents from './Documents/Layout.svelte';
   import Templates from './Templates.svelte';
 
-  const SECTION_DOCUMENTS = 0;
-  const SECTION_TEMPLATES = 1;
+  enum Section {
+    Documents,
+    Templates
+  };
 
-  let activeSection = SECTION_DOCUMENTS;
+  let activeSection: Section = Section.Documents;
 
-  const setSection = section => {
+  const setSection = (section: Section) => {
     activeSection = section;
   };
 </script>
@@ -26,12 +26,12 @@
     </div>
     <div class="navbar-menu">
       <div class="navbar-start">
-        <a class="navbar-item" class:is-active={ activeSection === SECTION_DOCUMENTS }
-           on:click|preventDefault={ () => setSection(SECTION_DOCUMENTS) }>
+        <a class="navbar-item" class:is-active={ activeSection === Section.Documents }
+           on:click|preventDefault={ () => setSection(Section.Documents) }>
           Документы
         </a>
-        <a class="navbar-item" class:is-active={ activeSection === SECTION_TEMPLATES }
-           on:click|preventDefault={ () => setSection(SECTION_TEMPLATES) }>
+        <a class="navbar-item" class:is-active={ activeSection === Section.Templates }
+           on:click|preventDefault={ () => setSection(Section.Templates) }>
           Шаблоны
         </a>
       </div>
@@ -42,7 +42,7 @@
             <a href="https://github.com/naidoc/app/blob/main/changelog.md" class="navbar-item" target="_blank">
               История изменений
             </a>
-            <div class="navbar-item">Версия { version }</div>
+            <div class="navbar-item">Версия { '__NAIDOC_VERSION' }</div>
           </div>
         </div>
       </div>
@@ -51,10 +51,10 @@
 </div>
 
 <div class="container mt-5">
-  {#if activeSection === SECTION_DOCUMENTS}
+  {#if activeSection === Section.Documents}
     <Documents/>
   {/if}
-  {#if activeSection === SECTION_TEMPLATES}
+  {#if activeSection === Section.Templates}
     <Templates/>
   {/if}
 </div>

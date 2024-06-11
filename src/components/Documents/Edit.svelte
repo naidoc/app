@@ -2,7 +2,7 @@
   import { onMount } from 'svelte';
   import { PatchType, TextRun, patchDocument } from 'docx';
   import db from '../../common/db.js';
-  import { displayError } from '../../common/utils.js';
+  import { displayError } from '../../common/utils';
 
   export let id;
 

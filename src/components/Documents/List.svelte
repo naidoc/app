@@ -2,7 +2,7 @@
   import { onMount, createEventDispatcher } from 'svelte';
   import { liveQuery } from 'dexie';
   import db from '../../common/db.js';
-  import { displayError } from '../../common/utils.js';
+  import { displayError } from '../../common/utils';
 
   const dispatch = createEventDispatcher();
 

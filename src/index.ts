@@ -1,3 +1,5 @@
+/// <reference types="svelte" />
+
 import './style.scss';
 
 import App from './components/App.svelte';

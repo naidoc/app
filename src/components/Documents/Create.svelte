@@ -2,8 +2,8 @@
   import { onMount, createEventDispatcher } from 'svelte';
   import { v4 as uuid } from 'uuid';
   import db from '../../common/db.js';
-  import { showAlert } from '../../common/ui.js';
-  import { displayError } from '../../common/utils.js';
+  import { showAlert } from '../../common/ui';
+  import { displayError } from '../../common/utils';
 
   const dispatch = createEventDispatcher();
 
