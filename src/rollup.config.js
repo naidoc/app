@@ -18,7 +18,6 @@ const plugins = [
       if(warning.code === 'a11y-click-events-have-key-events') return;
       if(warning.code === 'a11y-no-static-element-interactions') return;
       if(warning.code === 'a11y-label-has-associated-control') return;
-
       handler(warning);
     }
   }),
@@ -29,9 +28,9 @@ const plugins = [
     options: {
       includePaths: ['node_modules']
     },
-    processor: css => postcss([cssnano({ preset: 'advanced' })])
+    processor: !IS_DEV ? css => postcss([cssnano({ preset: 'advanced' })])
       .process(css, { from: undefined })
-      .then(result => result.css)
+      .then(result => result.css) : null
   }),
   json(),
   copy({
