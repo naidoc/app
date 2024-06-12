@@ -17,35 +17,25 @@
   };
 </script>
 
-<div class="navbar is-light">
-  <div class="container">
-    <div class="navbar-brand">
-      <div class="navbar-item">
-        <img src="logo.svg" width="124" height="24">
-      </div>
-    </div>
-    <div class="navbar-menu">
-      <div class="navbar-start">
-        <a class="navbar-item" class:is-active={ activeSection === Section.Documents }
-           on:click|preventDefault={ () => setSection(Section.Documents) }>
-          Документы
-        </a>
-        <a class="navbar-item" class:is-active={ activeSection === Section.Templates }
-           on:click|preventDefault={ () => setSection(Section.Templates) }>
-          Шаблоны
-        </a>
-      </div>
-      <div class="navbar-end">
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link">Меню</a>
-          <div class="navbar-dropdown is-right">
-            <a href="https://github.com/naidoc/app/blob/main/changelog.md" class="navbar-item" target="_blank">
-              История изменений
-            </a>
-            <div class="navbar-item">Версия { '__NAIDOC_VERSION' }</div>
-          </div>
-        </div>
-      </div>
+<div class="navbar">
+  <div class="navbar-fixed">
+    <img src="/img/logo.svg" class="navbar-logo">
+  </div>
+  <a class="navbar_item" class:is-active={ activeSection === Section.Documents }
+      on:click|preventDefault={ () => setSection(Section.Documents) }>
+    Документы
+  </a>
+  <a class="navbar_item" class:is-active={ activeSection === Section.Templates }
+      on:click|preventDefault={ () => setSection(Section.Templates) }>
+    Шаблоны
+  </a>
+  <div class="navbar-dropdown">
+    <a class="navbar_item">Меню</a>
+    <div class="navbar-dropdown_menu">
+      <a href="https://github.com/naidoc/app/blob/main/changelog.md" class="navbar_item" target="_blank">
+        История изменений
+      </a>
+      <div class="navbar_item">Версия { '__NAIDOC_VERSION' }</div>
     </div>
   </div>
 </div>
@@ -60,7 +50,7 @@
 </div>
 
 {#if $alertData}
-  <div class="modal is-active">
+  <div class="modal is-active test">
     <div class="modal-background" transition:fade></div>
     <div class="modal-card" transition:fly={{ y: -100 }}>
       <div class="modal-card-head">

@@ -1,0 +1,40 @@
+@use "../variables" as v;
+
+@font-face {
+  font-family: 'Montserrat';
+  src: local('Montserrat Regular'), local('Montserrat-Regular'), url('font/regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: local('Montserrat SemiBold'), local('Montserrat-SemiBold'), url('font/semibold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+html {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  background-color: v.$lightest;
+  color: v.$text;
+  font-size: v.$base-size;
+  text-rendering: optimizeLegibility;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-size: 1rem;
+  line-height: v.$line-height;
+}
+
+body, button, input, select, textarea {
+  font-family: v.$font-family;
+}
+
+a, button {
+  cursor: pointer;
+}

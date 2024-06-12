@@ -1,0 +1,30 @@
+@use "../variables" as v;
+
+.navbar {
+  background-color: v.$white;
+  display: flex;
+  height: 3rem;
+
+  &_item {
+    align-items: center;
+    display: flex;
+    padding: 0.5rem 0.75rem;
+  }
+}
+
+.navbar-fixed {
+  display: flex;
+}
+
+.navbar-logo {
+  height: 2rem;
+  margin: 0.5rem 0.75rem;
+}
+
+.navbar-dropdown {
+  display: flex;
+
+  &_menu {
+    display: none;
+  }
+}

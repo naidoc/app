@@ -1,6 +1,6 @@
 /// <reference types="svelte" />
 
-import './style.scss';
+import './styles/index.scss';
 
 import App from './components/App.svelte';
 

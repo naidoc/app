@@ -13,12 +13,13 @@ import serve from 'rollup-plugin-serve';
 import svelte from 'rollup-plugin-svelte';
 import preprocess from 'svelte-preprocess';
 
-const production = !process.env.ROLLUP_WATCH;
+const IS_PROD = !process.env.ROLLUP_WATCH;
+const GEN_SOURCEMAP = true;
 
 export default {
   input: 'src/index.ts',
   output: {
-    file: 'dist/js/app.min.js',
+    file: 'dist/app.js',
     format: 'iife'
   },
   watch: { clearScreen: false },
@@ -26,37 +27,47 @@ export default {
     commonjs(),
     resolve({ browser: true }),
     svelte({
-      preprocess: preprocess({
-        replace: [
+      preprocess: [
+        preprocess.replace([
           [/\{\s*'__NAIDOC_VERSION'\s*\}/g, pkg.version]
-        ]
-      }),
+        ]),
+        preprocess.typescript()
+      ],
+      emitCss: true,
       onwarn: (warning, handler) => {
         if(warning.code === 'a11y-missing-attribute') return;
         if(warning.code === 'a11y-click-events-have-key-events') return;
         if(warning.code === 'a11y-no-static-element-interactions') return;
         if(warning.code === 'a11y-label-has-associated-control') return;
         handler(warning);
+      },
+      compilerOptions: {
+        enableSourcemap: GEN_SOURCEMAP,
+        dev: !IS_PROD
       }
     }),
     typescript(),
     sass({
-      output: 'dist/app.min.css',
-      options: {
-        includePaths: ['node_modules']
-      },
-      processor: production && (css => postcss([cssnano({ preset: 'advanced' })])
+      output: 'dist/app.css',
+      processor: IS_PROD && (css => postcss([cssnano({ preset: 'advanced' })])
         .process(css, { from: undefined })
         .then(result => result.css))
     }),
     copy({
       targets: [
-        { src: 'src/assets/*', dest: 'dist' },
-        { src: 'node_modules/jszip/dist/jszip.min.js', dest: 'dist/js' },
-        { src: 'node_modules/docx-preview/dist/docx-preview.min.js', dest: 'dist/js' }
+        { src: 'src/assets/index.html', dest: 'dist' },
+        { src: 'src/assets/web/*', dest: 'dist' },
+        { src: 'src/assets/img/*', dest: 'dist/img' },
+        { src: 'src/assets/font/*', dest: 'dist/font' },
+        { src: 'node_modules/jszip/dist/jszip.min.js', dest: 'dist/lib', rename: 'jszip.js' },
+        {
+          src: 'node_modules/docx-preview/dist/docx-preview.min.js',
+          dest: 'dist/lib',
+          rename: 'docx-preview.js'
+        }
       ]
     }),
-    production && terser({ sourceMap: { url: 'inline' } }),
-    !production && serve('dist')
+    IS_PROD && terser({ sourceMap: { url: 'inline' } }),
+    !IS_PROD && serve('dist')
   ]
 };
