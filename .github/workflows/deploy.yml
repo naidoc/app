@@ -29,3 +29,4 @@ jobs:
           publish_dir: dist
           cname: app.naidoc.org
           force_orphan: true
+          disable_nojekyll: true
