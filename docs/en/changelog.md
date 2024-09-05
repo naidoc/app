@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.0.3](https://github.com/naidoc/naidoc/compare/v0.0.2...v0.0.3) (2024-09-05)
+
+- Export/import using local file
+
 ## [0.0.2](https://github.com/naidoc/naidoc/compare/v0.0.1...v0.0.2) (2023-08-23)
 
 - Creating template duplicates
